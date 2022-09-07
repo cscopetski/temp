@@ -1,41 +1,186 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <div id="add-food-box">
+      <h2>Add Food</h2>
+      <form id="add-food-form" action="">
+        <h3>Food Name</h3>
+        <input type="text" id="foodname" value="Food Name" /><br />
+        <h3>Food Type</h3>
+
+        <fieldset>
+          <input
+            type="radio"
+            name="foodtype"
+            id="meat"
+            value="Meat"
+            checked="checked"
+          />
+          <label for="meat">Meat</label><br />
+          <input type="radio" name="foodtype" id="fruit" value="Fruit" />
+          <label for="fruit">Fruit</label><br />
+          <input
+            type="radio"
+            name="foodtype"
+            id="vegetable"
+            value="Vegetable"
+          />
+          <label for="vegetable">Vegetable</label><br />
+          <input type="radio" name="foodtype" id="dairy" value="Dairy" />
+          <label for="dairy">Dairy</label><br />
+          <input type="radio" name="foodtype" id="other" value="Other" />
+          <label for="other">Other</label><br />
+        </fieldset>
+
+        <h3>Food Amount (lbs)</h3>
+        <input type="number" id="foodweight" min="0" value="0" /><br />
+        <h3>Price ($)</h3>
+        <input type="number" id="foodprice" min="0" value="0" /><br />
+        <div>
+          <button id="submit-button">Add Food</button>
+          <button id="delete-button">Delete Selected Foods</button>
+        </div>
+      </form>
+    </div>
+    <div id="food-list-box">
+      <h2>Food List</h2>
+      <table id="foodtable"></table>
+    </div>
   </body>
+
+  <template id="foodrow">
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><input name="delete-select" type="checkbox" /></td>
+    </tr>
+  </template>
+  <template id="table-header">
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Weight (lbs)</th>
+      <th>Price ($)</th>
+      <th>Price per Pound</th>
+      <th>Select Food</th>
+    </tr>
+  </template>
+
   <script>
+    const getList = function () {
+      fetch("/get-food", {
+        method: "GET",
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          reloadList(data);
+        });
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+      return false;
+    };
+    const submit = function (e) {
+      // prevent default form action from being carried out
+      e.preventDefault();
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+      const foodname = document.querySelector("#foodname").value;
+      const foodtype = document.querySelector(
+          'input[name="foodtype"]:checked'
+        ).value,
+        foodweight = document.querySelector("#foodweight").value,
+        foodprice = document.querySelector("#foodprice").value,
+        json = {
+          foodname: foodname,
+          foodtype: foodtype,
+          foodweight: parseFloat(foodweight),
+          foodprice: parseFloat(foodprice),
+        },
+        body = JSON.stringify(json);
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+      fetch("/submit", {
+        method: "POST",
+        body,
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          reloadList(data);
+        });
 
-    return false
-  }
+      return false;
+    };
+    const deleteFood = function (e) {
+      e.preventDefault();
+      const checkboxes = document.querySelectorAll(
+        'input[name="delete-select"]:checked'
+      );
+      const deleteids = [];
+      checkboxes.forEach((element) => {
+        deleteids.push(element.value);
+      });
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
+      const body = JSON.stringify(deleteids);
 
+      fetch("/delete", {
+        method: "POST",
+        body,
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          reloadList(data);
+        });
+
+      return false;
+    };
+    window.onload = function () {
+      getList();
+      const submitbutton = document.querySelector("#submit-button");
+      submitbutton.onclick = submit;
+      const deletebutton = document.querySelector("#delete-button");
+      deletebutton.onclick = deleteFood;
+    };
+
+    function removeAllChildNodes(parent) {
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+      }
+    }
+
+    function reloadList(data) {
+      const table = document.querySelector("#foodtable");
+      const template = document.querySelector("#foodrow");
+      const headersTemp = document.querySelector("#table-header");
+      const headers = headersTemp.content.cloneNode(true);
+
+      removeAllChildNodes(table);
+
+      table.append(headers);
+
+      data.forEach((element) => {
+        const row = template.content.cloneNode(true);
+        let tr = row.querySelector("tr");
+        tr.id = "food-" + element.id;
+        let td = row.querySelectorAll("td");
+        td[0].textContent = element.foodname;
+        td[1].textContent = element.foodtype;
+        td[2].textContent = element.foodweight;
+        td[3].textContent = element.foodprice;
+        td[4].textContent = element.priceperpound;
+        td[5].querySelector('input[name="delete-select"]').value = element.id;
+        table.append(row);
+      });
+    }
   </script>
 </html>
