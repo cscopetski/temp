@@ -1,8 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Mukta&family=Nunito&family=Rubik&display=swap");
 :root {
-  --main-background: #6f787a;
+  --main-background: #444849;
   --input-background: #bccacf;
   --secondary-background: #9eaaad;
   --light-gray: #8f999c;
+  --dark-background: #6f787a;
+  font-family: "Nunito", sans-serif;
+}
+h1 {
+  font-size: 50px;
+  font-family: "Mukta", sans-serif;
+  margin: 10px;
+}
+h2 {
+  font-size: 30px;
+  text-decoration: underline;
+}
+input {
+  background-color: var(--input-background);
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  background-color: var(--main-background);
+}
+table,
+th,
+td {
+  border: 1px solid;
+  padding: 5px;
+  background-color: var(--input-background);
+}
+th {
+  background-color: var(--light-gray);
+}
+table {
+  background-color: var(--secondary-background);
+}
+th {
+  font-size: larger;
+  min-width: 150px;
+  font-family: "Mukta";
+}
+td {
+  font-family: "Rubik", sans-serif;
+  text-align: center;
+  align-content: center;
+}
+input[type="text"],
+input[type="number"] {
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  height: 30px;
+  margin: 10px;
+}
+button {
+  width: 200px;
+  margin: 5px;
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+}
+#inner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  background-color: var(--dark-background);
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-bottom: 100px;
 }
 #add-food-box {
   display: flex;
@@ -17,63 +88,38 @@
   align-items: center;
   align-content: center;
 }
-input {
-  background-color: var(--input-background);
-}
-input[type="text"],
-input[type="number"] {
-  font-size: 16px;
-  height: 30px;
-  margin: 10px;
-}
-
-input[type="radio"] {
-  margin-left: 10px;
-}
-.radio-label {
-  font-size: 18px;
-  font-style: italic;
-}
-
 #radio-box {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   align-content: flex-start;
-  border: 0;
+  background-color: var(--input-background);
+  border-top-color: black;
+  border-left-color: black;
 }
-.add-button {
-}
-.delete-button {
-}
-body {
+#button-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
-  background-color: var(--main-background);
 }
-
-table,
-th,
-td {
-  border: 1px solid;
-  padding: 5px;
-  background-color: var(--input-background);
+#submit-button {
+  background-color: rgb(1, 151, 1);
 }
-th {
-  background-color: var(--light-gray);
+#submit-button:hover {
+  background-color: rgb(4, 105, 4);
 }
-table {
-  background-color: var(--secondary-background);
+#delete-button {
+  background-color: red;
 }
-
-th {
-  font-size: larger;
-  min-width: 150px;
+#delete-button:hover {
+  background-color: rgb(189, 7, 7);
 }
-
-td {
-  text-align: center;
-  align-content: center;
+.radio-label {
+  font-size: 18px;
+  font-style: italic;
+}
+.input-header {
+  font-size: 22px;
+  margin-bottom: 5px;
 }
