@@ -1,22 +1,57 @@
-/*Style your own assignment! This is fun! */
+:root {
+  --main-background: #6f787a;
+  --input-background: #bccacf;
+  --secondary-background: #9eaaad;
+  --light-gray: #8f999c;
+}
 #add-food-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
+  text-align: center;
 }
 #food-list-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
-  width: 80%;
+}
+input {
+  background-color: var(--input-background);
+}
+input[type="text"],
+input[type="number"] {
+  font-size: 16px;
+  height: 30px;
+  margin: 10px;
+}
+
+input[type="radio"] {
+  margin-left: 10px;
+}
+.radio-label {
+  font-size: 18px;
+  font-style: italic;
+}
+
+#radio-box {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: flex-start;
+  border: 0;
+}
+.add-button {
+}
+.delete-button {
 }
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
+  background-color: var(--main-background);
 }
 
 table,
@@ -24,17 +59,21 @@ th,
 td {
   border: 1px solid;
   padding: 5px;
+  background-color: var(--input-background);
+}
+th {
+  background-color: var(--light-gray);
 }
 table {
-  margin: 10px;
+  background-color: var(--secondary-background);
 }
 
 th {
   font-size: larger;
+  min-width: 150px;
 }
 
 td {
   text-align: center;
   align-content: center;
-  min-width: 150px;
 }
