@@ -17,7 +17,6 @@ The task given to the UI testers was to add a food to the list, then delete the 
     2. Didnt like selecting the food before clicking delete button. Thought clicking delete, then clicking on the foods they want to delete was more intuitive
     3. The problem with selecting foods then clicking delete surprised me. I originally thought that selecting the food before deleting it made more sense, but after talking through it I realized entering a "delete mode" to delete list items could be more intuitive.
     4. Based on the feedback I would change the checkbox selection method for deleting list items to a delete mode, where after clicking the delete button clicked items get deleted from the list.
-
     - **Person 2**:
     1. Zhang
     2. Had a problem with the text input and number input fields being pre-filled with default values. Felt that having to clear the field before inputting value was tedious.
