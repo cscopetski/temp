@@ -37,14 +37,12 @@ td {
 }
 th {
   background-color: var(--light-gray);
-}
-table {
-  background-color: var(--secondary-background);
-}
-th {
   font-size: larger;
   min-width: 150px;
   font-family: "Mukta";
+}
+table {
+  background-color: var(--secondary-background);
 }
 td {
   font-family: "Rubik", sans-serif;
