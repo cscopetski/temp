@@ -9,7 +9,7 @@ Food items have a name, type, weight, price, and a derived field, price per poun
 ## Technical Achievements
 - **Tech Achievement 1**: Used post requests to send data to backend server and return a response containing updated app data. Response is then received on front-end and displayed immediately by calling ``reloadList()`` to reload the food table with new data .
 
-### Design/Evaluation Achievements
+## Design/Evaluation Achievements
 - **Design Achievement 1**: 
 The task given to the UI testers was to add a food to the list, then delete the food from the list.
     - **Person 1**:
