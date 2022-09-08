@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Grocery List Tracker",
+  "version": "1.0",
+  "description": "A simple grocery list application",
+  "author": "Caleb Scopetski",
   "scripts": {
     "start": "node server.improved.js"
   },
