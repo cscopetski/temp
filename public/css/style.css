@@ -1,123 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Mukta&family=Nunito&family=Rubik&display=swap");
-:root {
-  --main-background: #444849;
-  --input-background: #bccacf;
-  --secondary-background: #9eaaad;
-  --light-gray: #8f999c;
-  --dark-background: #6f787a;
-  font-family: "Nunito", sans-serif;
-}
-h1 {
-  font-size: 50px;
-  font-family: "Mukta", sans-serif;
-  margin: 10px;
-}
-h2 {
-  font-size: 30px;
-  text-decoration: underline;
-}
-input {
-  background-color: var(--input-background);
-}
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  margin: 0;
-  font-family: "Nunito", sans-serif;
-  background-color: var(--main-background);
-}
-table,
-th,
-td {
-  border: 1px solid;
-  padding: 5px;
-  background-color: var(--input-background);
-}
 th {
-  background-color: var(--light-gray);
-  font-size: larger;
-  min-width: 150px;
-  font-family: "Mukta";
+  border: 0px;
+  border-bottom: 1px;
+  border-style: solid;
 }
-table {
-  background-color: var(--secondary-background);
-}
+
 td {
-  font-family: "Rubik", sans-serif;
-  text-align: center;
-  align-content: center;
+  border: 0px;
+  border-bottom: 1px;
+  border-style: dashed;
 }
-input[type="text"],
-input[type="number"] {
-  font-family: "Rubik", sans-serif;
-  font-size: 16px;
-  height: 30px;
-  margin: 10px;
-}
-button {
-  width: 200px;
-  margin: 5px;
-  font-size: 16px;
-  font-family: "Rubik", sans-serif;
-  font-weight: 700;
-}
-#inner-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  background-color: var(--dark-background);
-  padding-right: 50px;
-  padding-left: 50px;
-  padding-bottom: 100px;
-}
-#add-food-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  text-align: center;
-}
+
 #food-list-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
-#radio-box {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  align-content: flex-start;
-  background-color: var(--input-background);
-  border-top-color: black;
-  border-left-color: black;
-}
-#button-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-}
-#submit-button {
-  background-color: rgb(1, 151, 1);
-}
-#submit-button:hover {
-  background-color: rgb(4, 105, 4);
-}
-#delete-button {
-  background-color: red;
-}
-#delete-button:hover {
-  background-color: rgb(189, 7, 7);
-}
-.radio-label {
-  font-size: 18px;
-  font-style: italic;
-}
-.input-header {
-  font-size: 22px;
-  margin-bottom: 5px;
+
+#add-food-box {
+  margin-top: 100px;
 }

@@ -3,16 +3,28 @@
   <head>
     <title>Grocery List Tracker</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Grocery List Tracker" />
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+    />
   </head>
   <body>
+    <script src="js/scripts.js"></script>
     <div id="inner-content">
       <h1>Grocery List Tracker</h1>
       <div id="add-food-box">
         <h2>Add Food</h2>
         <form id="add-food-form">
           <h3 class="input-header">Food Name</h3>
-          <input type="text" id="foodname" value="Food Name" /><br />
+          <input
+            type="text"
+            id="foodname"
+            value="Food Name"
+            aria-label="Food Name"
+          /><br />
           <h3 class="input-header">Food Type</h3>
           <fieldset id="radio-box">
             <input
@@ -38,17 +50,31 @@
             <label class="radio-label" for="other">Other</label><br />
           </fieldset>
           <h3 class="input-header">Food Amount (lbs)</h3>
-          <input type="number" id="foodweight" min="0" value="0" /><br />
+          <input
+            type="number"
+            id="foodweight"
+            min="0"
+            value="0"
+            aria-label="Food Weight"
+          /><br />
           <h3 class="input-header">Price ($)</h3>
-          <input type="number" id="foodprice" min="0" value="0" /><br />
+          <input
+            type="number"
+            id="foodprice"
+            min="0"
+            value="0"
+            aria-label="Food Price"
+          /><br />
           <div id="button-box">
-            <button id="submit-button">Add Food</button>
+            <button id="submit-button" edit="false" edit_value="">
+              Add Food
+            </button>
             <button id="delete-button">Delete Selected Foods</button>
           </div>
         </form>
       </div>
       <div id="food-list-box">
-        <h2>Food List</h2>
+        <h2 id="list-title">Food List</h2>
         <table id="foodtable"></table>
       </div>
     </div>
@@ -59,7 +85,18 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><input name="delete-select" type="checkbox" /></td>
+        <td>
+          <input
+            name="delete-select"
+            type="checkbox"
+            aria-label="Food Selector"
+          />
+        </td>
+        <td>
+          <button name="edit-button" aria-label="Edit Food Button" row="">
+            Edit
+          </button>
+        </td>
       </tr>
     </template>
     <template id="table-header">
@@ -68,10 +105,10 @@
         <th>Type</th>
         <th>Weight (lbs)</th>
         <th>Price ($)</th>
-        <th>Price per Pound</th>
+        <th>$/Lbs</th>
         <th>Select Food</th>
+        <th>Edit Food</th>
       </tr>
     </template>
-    <script src="js/scripts.js"></script>
   </body>
 </html>
