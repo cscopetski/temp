@@ -1,3 +1,6 @@
+const req_headers = new Headers();
+req_headers.append("Content-Type", "application/json");
+
 const getList = function () {
   fetch("/get-food", {
     method: "GET",
@@ -7,7 +10,8 @@ const getList = function () {
     })
     .then((data) => {
       reloadList(data);
-    });
+    })
+    .catch((err) => console.log(err));
 
   return false;
 };
@@ -24,7 +28,7 @@ const submit = function (e) {
 
   if (e.target.edit === "true") {
     const json = {
-        id: parseInt(e.target.edit_value),
+        id: e.target.edit_value,
         foodname: foodname,
         foodtype: foodtype,
         foodweight: parseFloat(foodweight),
@@ -34,6 +38,7 @@ const submit = function (e) {
     fetch("/edit", {
       method: "POST",
       body: body,
+      headers: req_headers,
     })
       .then((response) => {
         return response.json();
@@ -43,7 +48,8 @@ const submit = function (e) {
         e.target.textContent = "Add Food";
         e.target.edit_value = "";
         reloadList(data);
-      });
+      })
+      .catch((err) => console.log(err));
   } else {
     const json = {
         foodname: foodname,
@@ -55,13 +61,15 @@ const submit = function (e) {
     fetch("/submit", {
       method: "POST",
       body: body,
+      headers: req_headers,
     })
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         reloadList(data);
-      });
+      })
+      .catch((err) => console.log(err));
   }
 
   return false;
@@ -74,7 +82,7 @@ const deleteFood = function (e) {
   );
   const deleteids = [];
   checkboxes.forEach((element) => {
-    deleteids.push(parseInt(element.value));
+    deleteids.push(element.value);
   });
 
   const body = JSON.stringify(deleteids);
@@ -82,13 +90,15 @@ const deleteFood = function (e) {
   fetch("/delete", {
     method: "POST",
     body: body,
+    headers: req_headers,
   })
     .then((response) => {
       return response.json();
     })
     .then((data) => {
       reloadList(data);
-    });
+    })
+    .catch((err) => console.log(err));
 
   return false;
 };
@@ -118,22 +128,24 @@ const reloadList = (data) => {
 
   table.append(headers);
 
-  data.forEach((element) => {
-    const row = template.content.cloneNode(true);
-    let tr = row.querySelector("tr");
-    tr.id = "food-" + element.id;
-    let td = row.querySelectorAll("td");
-    td[0].textContent = element.foodname;
-    td[1].textContent = element.foodtype;
-    td[2].textContent = element.foodweight;
-    td[3].textContent = element.foodprice;
-    td[4].textContent = element.priceperpound;
-    td[5].querySelector('input[name="delete-select"]').value = element.id;
-    let button = td[6].querySelector('button[name="edit-button"]');
-    button.value = element.id;
-    button.onclick = edit;
-    table.append(row);
-  });
+  if (Array.isArray(data)) {
+    data.forEach((element) => {
+      const row = template.content.cloneNode(true);
+      let tr = row.querySelector("tr");
+      tr.id = "food-" + element.id;
+      let td = row.querySelectorAll("td");
+      td[0].textContent = element.foodname;
+      td[1].textContent = element.foodtype;
+      td[2].textContent = element.foodweight;
+      td[3].textContent = element.foodprice;
+      td[4].textContent = parseFloat(element.priceperpound).toFixed(3);
+      td[5].querySelector('input[name="delete-select"]').value = element.id;
+      let button = td[6].querySelector('button[name="edit-button"]');
+      button.value = element.id;
+      button.onclick = edit;
+      table.append(row);
+    });
+  }
 };
 
 const edit = function (e) {
