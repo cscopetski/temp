@@ -2,6 +2,8 @@
 
 http://67.207.85.99:3000/
 
+**How to edit:** Upon clicking the edit button, the form will switch to edit mode and be filled with the list items data, where changes can be made and saved using the save changes button 
+
 - The goal of the application was to allow users to create a simple grocery list that would be synced to their account
 - Implementing oauth with the passport library was challenging
 - I implemented GitHub Oauth for authentication because it seemed to be the most accessible
